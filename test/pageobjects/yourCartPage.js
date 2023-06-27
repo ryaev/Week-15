@@ -2,6 +2,9 @@ class YourCartPage{
     get titlePage(){
         return $("#header_container > div.header_secondary_container > span");
     }
+    get itemsContainer(){
+        return $("#cart_contents_container > div > div.cart_list > div.cart_item");
+    }
     get contShopButton(){
         return $("#continue-shopping");
     }

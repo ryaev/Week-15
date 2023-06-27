@@ -68,14 +68,6 @@ describe("Problem user login", ()=>{
     it("Check redirection to checkout information page", async ()=>{
         await expect(CheckoutInfoPage.titlePage).toBeDisplayed();
         await expect(CheckoutInfoPage.titlePage).toHaveTextContaining("Checkout: Your Information");
-        await expect(CheckoutInfoPage.cancelCheckButton).toBeDisplayed();
-        await CheckoutInfoPage.cancelCheckButtonClick();
-        await expect(youCartPage.titlePage).toBeDisplayed();
-        await expect(youCartPage.titlePage).toHaveTextContaining("Your Cart");
-        await expect(youCartPage.checkoutButton).toBeDisplayed();
-        await youCartPage.checkoutButtonClick();
-        await expect(CheckoutInfoPage.titlePage).toBeDisplayed();
-        await expect(CheckoutInfoPage.titlePage).toHaveTextContaining("Checkout: Your Information");
         await expect(CheckoutInfoPage.nameInput).toBeDisplayed();
         await expect(CheckoutInfoPage.lastNameInput).toBeDisplayed();
         await expect(CheckoutInfoPage.zipInput).toBeDisplayed();

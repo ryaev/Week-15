@@ -24,7 +24,7 @@ describe("Check social media links in footer", ()=>{
         await expect(productsPage.footerLinkedLink).toHaveHrefContaining('https://www.linkedin.com/company/sauce-labs/');
     })
 
-    it("Logout", async ()=>{
+    it("Close page session", async ()=>{
         await expect(productsPage.userMenuButton).toBeDisplayed();
         await productsPage.userMenuButtonClick();
         await expect(productsPage.logoutButton).toBeDisplayed();
