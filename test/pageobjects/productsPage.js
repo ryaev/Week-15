@@ -20,6 +20,18 @@ class ProductsPage{
     async logoutButtonClick(){
         await this.logoutButton.click();
     }
+    get footerProductsPage(){
+        return $("#page_wrapper > footer");
+    }
+    get footerTwittLink(){
+        return $("#page_wrapper > footer > ul > li.social_twitter > a");
+    }
+    get footerFaceLink(){
+        return $("#page_wrapper > footer > ul > li.social_facebook > a");
+    }
+    get footerLinkedLink(){
+        return $("#page_wrapper > footer > ul > li.social_linkedin > a");
+    }
 }
 
 class ItemOne{

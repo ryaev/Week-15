@@ -18,7 +18,7 @@ describe("Problem user login", ()=>{
         await LandingPage.loginButtonClick();
     })
 
-    it("Check redirection to products page with problems", async ()=>{
+    it("Check redirection to products page with problems", async ()=>{   
         await expect(productsPage.titlePage).toBeDisplayed();
         await expect(productsPage.titlePage).toHaveTextContaining("Products");
         await expect(itemOne.itemImg).toBeDisplayed();
@@ -39,12 +39,11 @@ describe("Problem user login", ()=>{
         await expect(itemTwo.itemAddCartButton).toBeDisplayed();
         await itemTwo.itemAddCartButtonClick();
         await itemOne.itemRemCartButtonClick();
-        await expect(itemOne.itemAddCartButton).toBeDisplayed();
-        await itemOne.itemAddCartButtonClick();
-        await productsPage.cartButtonClick();
+        await itemOne.itemAddCartButton.waitForDisplayed({ timeout: 1000 });
     })
 
     it("Check redirection to your cart page", async ()=>{
+        await productsPage.cartButtonClick();
         await expect(youCartPage.titlePage).toBeDisplayed();
         await expect(youCartPage.titlePage).toHaveTextContaining("Your Cart");
         await expect(youCartPage.contShopButton).toBeDisplayed();
@@ -85,6 +84,22 @@ describe("Problem user login", ()=>{
         await expect(CheckoutInfoPage.checkInfoErrorButton).toBeDisplayed();
         await CheckoutInfoPage.checkInfoErrorButtonClick();
         await CheckoutInfoPage.infoCheckout("Robert", "Yanez", "2100");
-        await CheckoutInfoPage.continueCheckButtonClick();
+        await expect(CheckoutInfoPage.nameInput).toHaveValueContaining("Robert");
+        await expect(CheckoutInfoPage.lastNameInput).toHaveValueContaining("Yanez");
+        await expect(CheckoutInfoPage.zipInput).toHaveValueContaining("2100");
+        await CheckoutInfoPage.cancelCheckButtonClick();
+    })
+
+    it("Exit the checkout information form", async ()=>{
+        await expect(youCartPage.titlePage).toBeDisplayed();
+        await expect(youCartPage.titlePage).toHaveTextContaining("Your Cart");
+        await expect(youCartPage.contShopButton).toBeDisplayed();
+        await youCartPage.conShopButtonClick();
+        await expect(productsPage.titlePage).toBeDisplayed();
+        await expect(productsPage.titlePage).toHaveTextContaining("Products");
+        await expect(productsPage.userMenuButton).toBeDisplayed();
+        await productsPage.userMenuButtonClick();
+        await expect(productsPage.logoutButton).toBeDisplayed();
+        await productsPage.logoutButtonClick();
     })
 })
